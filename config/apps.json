@@ -1,0 +1,56 @@
+{
+  "apps": [
+    {
+      "id": "brain-web",
+      "name": "Brain Web",
+      "command": "/root/.bun/bin/bun",
+      "args": ["run", "web"],
+      "cwd": "/root/Brain",
+      "autostart": true
+    },
+    {
+      "id": "brain-daemon",
+      "name": "Brain Daemon",
+      "command": "/root/.bun/bin/bun",
+      "args": ["run", "daemon"],
+      "cwd": "/root/Brain",
+      "autostart": true
+    },
+    {
+      "id": "web-proxy",
+      "name": "Web Proxy",
+      "command": "/root/.bun/bin/bun",
+      "args": ["run", "/root/web-proxy/src/index.ts"],
+      "cwd": "/root/web-proxy",
+      "autostart": true,
+      "env": {
+        "PORT": "80"
+      }
+    },
+    {
+      "id": "auto-x-web",
+      "name": "Auto-X Web",
+      "command": "/usr/bin/npm",
+      "args": ["run", "start"],
+      "cwd": "/root/auto-x",
+      "envFile": "/root/auto-x/.env",
+      "env": {
+        "PORT": "3000",
+        "STREAM_WS_URL": "wss://alpha.robolike.com/ws"
+      },
+      "autostart": true
+    },
+    {
+      "id": "auto-x-stream",
+      "name": "Auto-X Stream",
+      "command": "/usr/bin/npm",
+      "args": ["run", "stream-server"],
+      "cwd": "/root/auto-x",
+      "envFile": "/root/auto-x/.env",
+      "env": {
+        "STREAM_PORT": "8787"
+      },
+      "autostart": true
+    }
+  ]
+}
